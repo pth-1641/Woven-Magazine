@@ -23,8 +23,10 @@ function Slider() {
         fetchData();
     }, []);
 
+    const scrollDown = () => {};
+
     return (
-        <div className='w-full h-screen px-7 pt-14'>
+        <div className='w-full h-screen md:h-screen md:px-7 md:pt-14'>
             <Swiper
                 style={{ height: '100%' }}
                 navigation={{
@@ -45,14 +47,14 @@ function Slider() {
                         <SwiperSlide key={key}>
                             <img
                                 src={slide.image}
-                                className='w-full relative bottom-24'
+                                className='h-full object-cover relative md:w-full'
                                 alt={slide.title}
                             />
-                            <div className='absolute bottom-24 text-white transform -translate-x-1/2 left-1/2 flex-center flex-col'>
-                                <h3 className='font-serif text-5xl mb-9 font-semibold'>
+                            <div className='absolute bottom-16 md:bottom-24 text-white transform -translate-x-1/2 left-1/2 flex-center flex-col'>
+                                <h3 className='font-serif text-3xl mb-6 md:mb-9 font-semibold md:text-5xl'>
                                     {slide.title}
                                 </h3>
-                                <button className='px-4 py-2 border-2 border-white text-sm font-semibold tracking-wider hover:bg-white hover:text-black duration-700'>
+                                <button className='text-xs px-4 py-2 border-2 border-white font-semibold tracking-wider hover:bg-white hover:text-black duration-700 md:text-sm'>
                                     READ THIS STORY
                                 </button>
                             </div>
@@ -61,20 +63,23 @@ function Slider() {
                 })}
 
                 <span
-                    className='navigation-center left-0'
+                    className='navigation-center left-0 md:block hidden'
                     ref={navigationPrevRef}
                 >
                     <Image src='/prev.svg' alt='prev' width={20} height={30} />
                 </span>
                 <span
-                    className='navigation-center right-0'
+                    className='navigation-center right-0 md:block hidden'
                     ref={navigationNextRef}
                 >
                     <Image src='/next.svg' alt='next' width={20} height={30} />
                 </span>
-                <span className='absolute right-10 bottom-2 z-10'>
+                <a
+                    onClick={scrollDown}
+                    className='absolute right-10 bottom-2 z-10 md:block hidden cursor-pointer'
+                >
                     <Image src='/down.svg' width={22} height={100} alt='down' />
-                </span>
+                </a>
             </Swiper>
         </div>
     );
