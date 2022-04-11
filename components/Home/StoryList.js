@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StoryItem from './StoryItem';
-import db from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { getData } from '../../firebase';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { BsPlus } from 'react-icons/bs';
 import { IoIosArrowDown } from 'react-icons/io';
+import Link from 'next/link';
 
 function StoryList() {
-    const firestoreData = [];
     const [stories, setStories] = useState([]);
     const [categories, setCategories] = useState([]);
     const [display, setDisplay] = useState(false);
@@ -20,9 +19,10 @@ function StoryList() {
     };
 
     useEffect(() => {
+        const firestoreData = [];
         async function fetchData() {
             // Fetching data from firestore
-            const querySnapshot = await getDocs(collection(db, 'Stories'));
+            const querySnapshot = await getData('Stories');
             querySnapshot.forEach((doc) => {
                 firestoreData.push(doc.data());
             });
@@ -55,7 +55,7 @@ function StoryList() {
             <div className='max-w-5xl mx-auto mt-14 mb-10 tracking-wider md:flex-between'>
                 <div className='w-full text-xs font-semibold uppercase md:w-48'>
                     <div
-                        className='w-full flex-between pb-1 border-b border-black relative'
+                        className='w-full flex-between pb-1 border-b border-black relative cursor-pointer'
                         onClick={toggleDisplay}
                     >
                         SORT BY
@@ -65,25 +65,31 @@ function StoryList() {
                         {display && (
                             <ul className='absolute top-6 z-20 px-2 py-1 bg-emerald-200 w-full leading-5 max-h-64 overflow-y-scroll'>
                                 {categories.map((category, key) => (
-                                    <li key={key}>{category}</li>
+                                    <li key={key} className='cursor-pointer'>
+                                        {category}
+                                    </li>
                                 ))}
                             </ul>
                         )}
                     </div>
                 </div>
-                <div className='flex-center flex-col w-full mt-2 gap-y-1 md:flex-row md:max-w-max'>
-                    <div className='flex-between text-sm font-medium w-full md:mr-8 md:max-w-max'>
-                        SEE FILMS
-                        <span className='ml-0.5'>
-                            <MdArrowForwardIos />
-                        </span>
-                    </div>
-                    <div className='flex-between text-sm font-medium w-full md:max-w-max'>
-                        SEE ALL STORIES
-                        <span className='ml-0.5'>
-                            <MdArrowForwardIos />
-                        </span>
-                    </div>
+                <div className='flex-center flex-col w-full mt-2 gap-y-1 md:flex-row md:max-w-max text-xs font-medium'>
+                    <Link href='/film'>
+                        <a className='flex-between w-full md:mr-8 md:max-w-max'>
+                            SEE FILMS
+                            <span className='ml-0.5'>
+                                <MdArrowForwardIos />
+                            </span>
+                        </a>
+                    </Link>
+                    <Link href='/story'>
+                        <a className='flex-between w-full md:max-w-max'>
+                            SEE ALL STORIES
+                            <span className='ml-0.5'>
+                                <MdArrowForwardIos />
+                            </span>
+                        </a>
+                    </Link>
                 </div>
             </div>
 

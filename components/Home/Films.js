@@ -8,13 +8,15 @@ function Films() {
                     src='https://player.vimeo.com/video/159979936?title=0&byline=0&portrait=0'
                     allowFullScreen
                     frameBorder={0}
-                ></iframe>
+                    loading='lazy'
+                />
                 <iframe
                     className='w-full aspect-video'
                     src='https://player.vimeo.com/video/110611030?title=0&byline=0&portrait=0'
                     allowFullScreen
                     frameBorder={0}
-                ></iframe>
+                    loading='lazy'
+                />
             </div>
         </div>
     );

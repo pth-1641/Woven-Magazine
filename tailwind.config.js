@@ -17,6 +17,7 @@ module.exports = {
             },
             backgroundColor: {
                 'white-0.9': 'rgba(255,255,255,0.9)',
+                'white-0.5': 'rgba(255,255,255,0.5)',
             },
         },
     },

@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import db from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { getData } from '../../firebase';
 import SwiperCore, { EffectFade, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -15,7 +14,7 @@ function Slider() {
     const [slides, setSlides] = useState([]);
     useEffect(() => {
         async function fetchData() {
-            const querySnapshot = await getDocs(collection(db, 'Slide'));
+            const querySnapshot = await getData('Slide');
             querySnapshot.forEach((doc) => {
                 setSlides((prev) => [...prev, doc.data()]);
             });
@@ -26,7 +25,7 @@ function Slider() {
     const scrollDown = () => {};
 
     return (
-        <div className='w-full h-screen md:h-screen md:px-7 md:pt-14'>
+        <div className='w-full h-screen md:h-screen md:px-7'>
             <Swiper
                 style={{ height: '100%' }}
                 navigation={{
@@ -40,18 +39,18 @@ function Slider() {
                 effect={'fade'}
                 modules={[EffectFade]}
                 loop={true}
-                speed={1000}
+                speed={500}
             >
                 {slides.map((slide, key) => {
                     return (
                         <SwiperSlide key={key}>
                             <img
                                 src={slide.image}
-                                className='h-full object-cover relative md:w-full'
+                                className='h-full object-cover relative md:w-full select-none'
                                 alt={slide.title}
                             />
                             <div className='absolute bottom-16 md:bottom-24 text-white transform -translate-x-1/2 left-1/2 flex-center flex-col'>
-                                <h3 className='font-serif text-3xl mb-6 md:mb-9 font-semibold md:text-5xl'>
+                                <h3 className='font-serif text-3xl mb-6 md:mb-9 font-semibold md:text-5xl text-center'>
                                     {slide.title}
                                 </h3>
                                 <button className='text-xs px-4 py-2 border-2 border-white font-semibold tracking-wider hover:bg-white hover:text-black duration-700 md:text-sm'>

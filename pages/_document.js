@@ -15,7 +15,7 @@ export default function Document() {
                     rel='stylesheet'
                 />
             </Head>
-            <body className='scroll-smooth antialiased'>
+            <body className='scroll-smooth antialiased overflow-x-hidden md:pt-14 pt-11'>
                 <Main />
                 <NextScript />
             </body>

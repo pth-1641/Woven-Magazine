@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import db from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { getData } from '../../firebase';
 import { MdArrowForwardIos } from 'react-icons/md';
+import Link from 'next/link';
 
 function Feature() {
     const [blogs, setBlogs] = useState([]);
@@ -9,7 +9,7 @@ function Feature() {
     useEffect(() => {
         const firestoreData = [];
         async function fetchData() {
-            const querySnapshot = await getDocs(collection(db, 'Blogs'));
+            const querySnapshot = await getData('Blogs');
             querySnapshot.forEach((doc) => {
                 firestoreData.push(doc.data());
             });
@@ -40,9 +40,13 @@ function Feature() {
                     </article>
                 ))}
             </div>
-            <h3 className='section-title text-xs text-emerald-500 flex-center pt-8 pb-5 '>
-                VISIT BLOG <MdArrowForwardIos />
-            </h3>
+            <div className='w-full mx-auto'>
+                <Link href='/blog'>
+                    <a className='section-title text-xs flex-center text-emerald-500 pt-8 pb-5'>
+                        VISIT BLOG <MdArrowForwardIos />
+                    </a>
+                </Link>
+            </div>
             <hr className='border-t w-1/2 max-w-lg border-neutral-400 mx-auto' />
         </div>
     );

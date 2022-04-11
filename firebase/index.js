@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = initializeApp({
     apiKey: process.env.API_KEY,
@@ -12,5 +13,6 @@ const firebaseConfig = initializeApp({
 });
 
 const db = getFirestore();
+export const getData = (dbName) => getDocs(collection(db, dbName));
 
 export default db;

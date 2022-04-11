@@ -19,16 +19,13 @@
         @apply absolute z-10 text-white top-1/2 transform -translate-y-1/2 mx-12 text-sm cursor-pointer;
     }
     .card-title {
-        @apply font-serif text-xl pt-3 border-b-2 border-emerald-300 w-max;
+        @apply font-serif text-xl underline underline-offset-4 decoration-emerald-300;
     }
     .section-title {
         @apply tracking-wider font-semibold text-sm;
     }
     .card-hover {
         @apply group-hover:flex-center hidden absolute z-10 inset-0 bg-white-0.9 flex-col tracking-widest font-medium text-xl text-emerald-500;
-    }
-    .navbar {
-        @apply shadow w-full bg-white h-11 md:h-14 shadow-zinc-200 fixed top-0 z-40 px-4 md:px-8;
     }
     .form-input {
         @apply w-full border-b-2 border-green-300 outline-none uppercase text-xs font-semibold pb-2 mb-4;
@@ -49,6 +46,6 @@
         @apply text-emerald-500 font-poppins text-xs font-semibold cursor-pointer;
     }
     .nav-item {
-        @apply block text-slate-400 text-3xl font-semibold tracking-widest hover:text-black transition duration-300;
+        @apply text-slate-400 text-2xl font-medium tracking-widest hover:text-black transition duration-300 md:text-3xl md:font-semibold;
     }
 }

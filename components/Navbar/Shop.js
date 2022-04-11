@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import db from '../../firebase';
+import Link from 'next/link';
+import { getData } from '../../firebase';
 import { BsArrowRight } from 'react-icons/bs';
 
 function Shop() {
@@ -10,7 +10,7 @@ function Shop() {
     useEffect(() => {
         async function fetchData() {
             // Fetching data from firestore
-            const querySnapshot = await getDocs(collection(db, 'Shop'));
+            const querySnapshot = await getData('Shop');
             querySnapshot.forEach((doc) => {
                 if (doc.data().square_img !== null) {
                     firestoreData.push(doc.data());
@@ -20,11 +20,15 @@ function Shop() {
         }
         fetchData();
     }, []);
-    console.log(shopItem);
+
     return (
-        <>
-            <div className='fixed inset-0 bg-white-0.9 z-30'>
-                <div className='grid grid-cols-4 mt-14'>
+        <div className='fixed z-30 inset-x-0 top-14' style={{ zIndex: -1 }}>
+            <div
+                className='fixed inset-0 bg-white-0.9 pointer-events-none opacity-0 group-hover:opacity-100 transition duration-700'
+                style={{ zIndex: -2 }}
+            ></div>
+            <div className='-translate-y-[100vh] h-0 group-hover:translate-y-0 transition duration-700'>
+                <div className='grid grid-cols-4'>
                     {shopItem.map((item) => (
                         <div className='relative cursor-pointer'>
                             <img src={item.square_img} className='w-full' />
@@ -46,17 +50,19 @@ function Shop() {
                         </div>
                     ))}
                 </div>
-                <a
-                    type='button'
-                    className='flex-center w-full py-4 bg-gray-100 font-medium cursor-pointer hover:text-white hover:bg-emerald-500 transition duration-300'
-                >
-                    SHOP ALL
-                    <span className='ml-2 font-bold text-xl'>
-                        <BsArrowRight />
-                    </span>
-                </a>
+                <Link href='/shop'>
+                    <a
+                        type='button'
+                        className='flex-center w-full py-4 bg-gray-100 font-medium cursor-pointer hover:text-white hover:bg-emerald-500 transition duration-300'
+                    >
+                        SHOP ALL
+                        <span className='ml-2 font-bold text-xl'>
+                            <BsArrowRight />
+                        </span>
+                    </a>
+                </Link>
             </div>
-        </>
+        </div>
     );
 }
 
