@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getData } from '../../firebase';
+import { getData } from '../../firebase/fetchData';
 import { useState, useEffect } from 'react';
 import BlogPost from './BlogPost';
 

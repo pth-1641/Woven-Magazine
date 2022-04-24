@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getData } from '../../firebase';
+import { getData } from '../../firebase/fetchData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import Link from 'next/link';
 

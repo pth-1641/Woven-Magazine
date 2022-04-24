@@ -1,18 +1,18 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { collection, getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore/lite';
 
-const firebaseConfig = initializeApp({
+const firebaseConfig = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
     projectId: 'woven-magazine',
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.APP_ID,
     measurementId: process.env.MEASUREMENT_ID,
-});
+};
 
-const db = getFirestore();
-export const getData = (dbName) => getDocs(collection(db, dbName));
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export default db;

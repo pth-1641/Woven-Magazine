@@ -6,7 +6,7 @@ function StoryItem({ story }) {
             <div className='w-full max-h-80 relative'>
                 <img
                     className='w-full object-cover'
-                    src={story.thumbnail}
+                    src={story.thumbnail_home}
                     loading='lazy'
                 />
                 <div className='card-hover'>

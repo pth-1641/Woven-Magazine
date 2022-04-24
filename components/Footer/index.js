@@ -2,11 +2,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import StayInTouch from './StayInTouch';
 
-function Footer() {
+function Footer({ footerRef }) {
     const [display, setDisplay] = useState(false);
 
     return (
-        <div className='w-full bg-zinc-200 py-12 text-xs font-semibold md:pb-32'>
+        <div
+            className='w-full bg-zinc-200 py-12 text-xs font-semibold md:pb-32'
+            ref={footerRef}
+        >
             <ul className='grid grid-cols-1 gap-2 mx-auto max-w-5xl text-center lg:grid-cols-6'>
                 <li>
                     <Link href='/collaborate'>

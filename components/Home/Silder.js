@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { getData } from '../../firebase';
+import { getData } from '../../firebase/fetchData';
 import SwiperCore, { EffectFade, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';

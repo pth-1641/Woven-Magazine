@@ -1,4 +1,4 @@
-import { getData } from '../../firebase';
+import { getData } from '../../firebase/fetchData';
 import { useState, useEffect } from 'react';
 import ProductItem from './ProductItem';
 

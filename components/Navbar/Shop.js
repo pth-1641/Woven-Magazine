@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getData } from '../../firebase';
+import { getData } from '../../firebase/fetchData';
 import { BsArrowRight } from 'react-icons/bs';
 
 function Shop() {
@@ -30,7 +30,7 @@ function Shop() {
             <div className='-translate-y-[100vh] h-0 group-hover:translate-y-0 transition duration-700'>
                 <div className='grid grid-cols-4'>
                     {shopItem.map((item) => (
-                        <div className='relative cursor-pointer'>
+                        <div className='relative cursor-pointer' key={item.id}>
                             <img src={item.square_img} className='w-full' />
                             <div className='absolute inset-0 flex-center flex-col text-lg bg-white-0.9 opacity-0 hover:opacity-100 transition duration-300'>
                                 <h3 className='font-serif'>{item.title}</h3>
