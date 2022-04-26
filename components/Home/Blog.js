@@ -41,7 +41,7 @@ function Feature() {
                 ))}
             </div>
             <div className='w-full mx-auto'>
-                <Link href='/blog'>
+                <Link href='/blogs'>
                     <a className='section-title text-xs flex-center text-emerald-500 pt-8 pb-5'>
                         VISIT BLOG <MdArrowForwardIos />
                     </a>

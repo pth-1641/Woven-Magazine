@@ -15,7 +15,7 @@ export const getDataWithLimit = (dbName, amount) => {
     return getDocs(q);
 };
 
-export const getScrollData = async (dbName, amount) => {
+export const getNextData = (dbName, amount, lastVisible) => {
     const next = query(
         collection(db, dbName),
         startAfter(lastVisible),
