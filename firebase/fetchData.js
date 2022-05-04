@@ -5,7 +5,9 @@ import {
     query,
     limit,
     startAfter,
+    where,
 } from 'firebase/firestore/lite';
+import { async } from '@firebase/util';
 
 export const getData = (dbName) => getDocs(collection(db, dbName));
 
@@ -22,4 +24,10 @@ export const getNextData = (dbName, amount, lastVisible) => {
         limit(amount)
     );
     return getDocs(next);
+};
+
+export const getDetail = (dbName, id) => {
+    const ref = collection(db, dbName);
+    const q = query(ref, where('id', '==', Number(id)));
+    return getDocs(q);
 };

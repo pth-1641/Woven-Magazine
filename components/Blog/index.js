@@ -9,7 +9,6 @@ function Blog() {
 
     useEffect(() => {
         async function fetchData() {
-            // Fetching data from firestore
             const firestoreData = [];
             const querySnapshot = await getData('Blogs');
             querySnapshot.forEach((doc) => {
@@ -39,7 +38,7 @@ function Blog() {
                         <ul>
                             {blogs.map((blog) => (
                                 <>
-                                    <BlogPost blog={blog} key={blog.id} />
+                                    <BlogPost blog={blog} />
                                     <div className='flex-center last:hidden'>
                                         <Image
                                             src='/x-double.png'

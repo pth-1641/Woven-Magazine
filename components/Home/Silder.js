@@ -10,19 +10,21 @@ SwiperCore.use([Navigation]);
 function Slider() {
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
-
     const [slides, setSlides] = useState([]);
+
     useEffect(() => {
         async function fetchData() {
-            const querySnapshot = await getData('Slide');
-            querySnapshot.forEach((doc) => {
+            const slideData = await getData('Slide');
+            slideData.forEach((doc) => {
                 setSlides((prev) => [...prev, doc.data()]);
             });
         }
         fetchData();
     }, []);
 
-    const scrollDown = () => {};
+    const scrollDown = () => {
+        window.scrollBy(0, window.innerHeight);
+    };
 
     return (
         <div className='w-full h-screen md:h-screen md:px-7'>

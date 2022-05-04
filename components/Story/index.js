@@ -1,52 +1,19 @@
 import { useState, useEffect } from 'react';
-import { getDataWithLimit, getScrollData } from '../../firebase/fetchData';
+import { getDataWithLimit, getNextData } from '../../firebase/fetchData';
 import StoryPost from './StoryPost';
 import PostCategories from '../PostCategories';
-import {
-    collection,
-    query,
-    orderBy,
-    startAfter,
-    limit,
-    getDocs,
-} from 'firebase/firestore/lite';
-import db from '../../firebase';
 
 function Story({ footerHeight }) {
     const [stories, setStories] = useState([]);
-    const [lastData, setLastData] = useState(null);
-
-    const fetchFirstData = async () => {
-        const firestoreData = [];
-        const querySnapshot = await getDataWithLimit('Stories', 8);
-        querySnapshot.forEach((doc) => {
-            firestoreData.push(doc.data());
-        });
-        console.log('first data');
-        setStories(firestoreData);
-        setLastData(querySnapshot.docs[querySnapshot.docs.length - 1]);
-    };
-    console.log('function');
-    console.log(lastData);
+    const [lastDoc, setLastDoc] = useState(null);
 
     const fetchNextData = async () => {
-        const nextData = [];
-        console.log('next data');
-        console.log(lastData);
-        // const nextDataScroll = await getScrollData('Stories', 1);
-        // nextDataScroll.forEach((doc) => data.push(doc.data()));
-        // lastVisible = nextDataScroll.docs[nextDataScroll.docs.length - 1];
-        // const next = query(
-        //     collection(db, 'Stories'),
-        //     startAfter(lastVisible),
-        //     limit(1)
-        // );
-        // const a = await getDocs(next);
-        // a.forEach((doc) => data.push(doc.data()));
-        // setStories(data);
-        // const queryNextSnapshot = await getScrollData('Stories', lastData, 8);
-        // queryNextSnapshot.forEach((doc) => console.log(doc.data()));
-        // console.log(data);
+        let nextData = [];
+        const next = await getNextData('Stories', 8, lastDoc);
+        next.forEach((doc) => nextData.push(doc.data()));
+        setLastDoc(next.docs[next.docs.length - 1]);
+        setStories([...stories, ...nextData]);
+        console.log(nextData);
     };
 
     const handleScroll = (e) => {
@@ -56,13 +23,20 @@ function Story({ footerHeight }) {
         if (windowHeight + curPosition + footerHeight >= totalHeight) {
             fetchNextData();
         }
-        console.log('scroll');
     };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        fetchFirstData();
-        console.log('effect');
+        async function fetchData() {
+            const storiesData = await getDataWithLimit('Stories', 8);
+            setLastDoc(storiesData.docs[storiesData.docs.length - 1]);
+            storiesData.forEach((doc) => {
+                setStories((prev) => [...prev, doc.data()]);
+            });
+        }
+        fetchData();
+
+        return window.removeEventListener('click', handleScroll);
     }, []);
 
     return (

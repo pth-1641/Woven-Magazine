@@ -1,6 +1,6 @@
-import Navbar from '../components/Navbar';
-import Main from '../components/Blog';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import Main from '../../components/Blog';
+import Footer from '../../components/Footer';
 
 function Blog() {
     return (

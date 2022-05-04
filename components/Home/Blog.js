@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getData } from '../../firebase/fetchData';
+import { getDataWithLimit } from '../../firebase/fetchData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import Link from 'next/link';
 
@@ -7,13 +7,11 @@ function Feature() {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        const firestoreData = [];
         async function fetchData() {
-            const querySnapshot = await getData('Blogs');
+            const querySnapshot = await getDataWithLimit('Blogs', 4);
             querySnapshot.forEach((doc) => {
-                firestoreData.push(doc.data());
+                setBlogs((prev) => [...prev, { id: doc.id, ...doc.data() }]);
             });
-            setBlogs(firestoreData.slice(0, 4));
         }
         fetchData();
     }, []);
@@ -25,8 +23,8 @@ function Feature() {
                 FEATURED BLOG POSTS
             </h2>
             <div className='grid grid-cols-2 gap-6 max-w-3xl mx-auto px-6 md:grid-cols-4'>
-                {blogs.map((blog, index) => (
-                    <article key={index}>
+                {blogs.map((blog) => (
+                    <article key={blog.id}>
                         <img
                             className='aspect-square object-cover object-center'
                             src={blog.thumbnail}

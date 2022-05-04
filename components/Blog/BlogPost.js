@@ -1,6 +1,18 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { useRouter } from 'next/router';
+import useStore from '../../appStore/store';
 
 function BlogPost({ blog }) {
+    const router = useRouter();
+    const blogTitle = useStore((state) => state.setBlogInfo);
+    const title = useStore((state) => state.blogInfo);
+
+    const handlePostDetail = () => {
+        blogTitle(blog.title);
+        console.log(title);
+        router.push(`/blogs/${blog.id}`);
+    };
+
     return (
         <div className='w-full bg-white flex flex-col-reverse md:grid md:grid-cols-12'>
             <div className='col-span-5 p-6 flex-center flex-col gap-5 items-start relative'>
@@ -11,7 +23,10 @@ function BlogPost({ blog }) {
                     {blog.title}
                 </h2>
                 <p className='text-sm'>{blog.overview}</p>
-                <a className='flex-center text-emerald-500 font-semibold text-sm'>
+                <a
+                    className='flex-center text-emerald-500 font-semibold text-sm cursor-pointer'
+                    onClick={handlePostDetail}
+                >
                     DO GO ON
                     <span className='text-lg'>
                         <MdKeyboardArrowRight />
