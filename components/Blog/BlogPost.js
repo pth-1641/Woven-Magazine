@@ -4,12 +4,15 @@ import useStore from '../../appStore/store';
 
 function BlogPost({ blog }) {
     const router = useRouter();
-    const blogTitle = useStore((state) => state.setBlogInfo);
-    const title = useStore((state) => state.blogInfo);
+    const blogInfo = useStore((state) => state.setBlogInfo);
 
-    const handlePostDetail = () => {
-        blogTitle(blog.title);
-        console.log(title);
+    const handleBlogDetail = () => {
+        blogInfo(blog.title, blog.time);
+        localStorage.setItem(
+            'blogInfo',
+            JSON.stringify({ title: blog.title, time: blog.time })
+        );
+        console.log(localStorage.blogInfo);
         router.push(`/blogs/${blog.id}`);
     };
 
@@ -19,13 +22,16 @@ function BlogPost({ blog }) {
                 <h5 className='absolute font-serif text-sm top-3 right-3'>
                     {blog.time}
                 </h5>
-                <h2 className='underline font-serif text-xl decoration-emerald-400 underline-offset-4 uppercase mt-6 md:text-2xl'>
+                <h2
+                    className='underline font-serif text-xl decoration-emerald-400 underline-offset-4 uppercase mt-6 md:text-2xl cursor-pointer'
+                    onClick={handleBlogDetail}
+                >
                     {blog.title}
                 </h2>
                 <p className='text-sm'>{blog.overview}</p>
                 <a
                     className='flex-center text-emerald-500 font-semibold text-sm cursor-pointer'
-                    onClick={handlePostDetail}
+                    onClick={handleBlogDetail}
                 >
                     DO GO ON
                     <span className='text-lg'>
@@ -36,7 +42,8 @@ function BlogPost({ blog }) {
             <img
                 src={blog.thumbnail}
                 alt={blog.title}
-                className='w-full max-h-[300px] object-top object-cover md:max-h-max md:col-span-7'
+                onClick={handleBlogDetail}
+                className='w-full max-h-[300px] object-center object-cover md:max-h-max md:col-span-7 cursor-pointer'
             />
         </div>
     );

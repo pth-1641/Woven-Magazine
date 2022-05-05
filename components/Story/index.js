@@ -36,7 +36,7 @@ function Story({ footerHeight }) {
         }
         fetchData();
 
-        return window.removeEventListener('click', handleScroll);
+        return window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (

@@ -2,9 +2,24 @@ import { useState, useEffect } from 'react';
 import { getDataWithLimit } from '../../firebase/fetchData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import Link from 'next/link';
+import useStore from '../../appStore/store';
+import { useRouter } from 'next/router';
 
 function Feature() {
     const [blogs, setBlogs] = useState([]);
+
+    const router = useRouter();
+
+    const blogInfo = useStore((state) => state.setBlogInfo);
+
+    const handleBlogDetail = (blog) => {
+        blogInfo(blog.title, blog.time);
+        localStorage.setItem(
+            'blogInfo',
+            JSON.stringify({ title: blog.title, time: blog.time })
+        );
+        router.push(`/blogs/${blog.id}`);
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -26,8 +41,10 @@ function Feature() {
                 {blogs.map((blog) => (
                     <article key={blog.id}>
                         <img
-                            className='aspect-square object-cover object-center'
+                            className='aspect-square object-cover object-center cursor-pointer'
                             src={blog.thumbnail}
+                            alt={blog.title}
+                            onClick={() => handleBlogDetail(blog)}
                         />
                         <h3 className='font-serif hidden font-medium my-2 leading-tight md:block'>
                             {blog.title}

@@ -47,7 +47,7 @@ function Navbar() {
                                 )}
                             </span>
                             <Link href='/shop'>
-                                <div className='flex-center cursor-pointer h-full relative group'>
+                                <div className='flex-center cursor-pointer h-full relative group pointer-events-none md:pointer-events-auto'>
                                     <a className='mr-2 invisible md:visible select-none'>
                                         SHOP
                                     </a>
@@ -74,7 +74,7 @@ function Navbar() {
                         </Link>
                         <div className='flex-center relative'>
                             <span
-                                className='text-2xl mr-6 md:hidden ml-2'
+                                className='text-2xl mr-4 md:hidden ml-2'
                                 onClick={handleCart}
                             >
                                 <FiShoppingCart />

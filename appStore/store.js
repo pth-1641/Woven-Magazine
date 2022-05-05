@@ -1,9 +1,9 @@
 import create from 'zustand';
 
 const useStore = create((set) => ({
-    blogInfo: 'title',
-    setBlogInfo: (title) => {
-        set((state) => (state.blogInfo = title));
+    blogInfo: { title: '', time: '' },
+    setBlogInfo: (title, time) => {
+        set(() => ({ blogInfo: { title, time } }));
     },
 }));
 
