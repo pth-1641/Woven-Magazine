@@ -11,11 +11,13 @@ function StoryList() {
 
     useEffect(() => {
         async function fetchData() {
+            const firestoreData = [];
             const storiesData = await getDataWithLimit('Stories', 8);
             setLastDoc(storiesData.docs[storiesData.docs.length - 1]);
             storiesData.forEach((doc) => {
-                setStories((prev) => [...prev, doc.data()]);
+                firestoreData.push(doc.data());
             });
+            setStories(firestoreData);
         }
         fetchData();
     }, []);
@@ -32,7 +34,7 @@ function StoryList() {
     };
 
     return (
-        <div className='w-full max-h-max bg-gray-200 py-12 px-7'>
+        <div className='w-full max-h-max bg-gray-200 py-12 px-5'>
             <PostCategories title='the stories' firstLink='films' />
             <div className='max-w-5xl grid grid-cols-1 mx-auto gap-10 md:grid-cols-2 2xl:grid-cols-4 2xl:max-w-9xl pb-12'>
                 {stories.map((story, key) => (

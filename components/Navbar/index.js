@@ -31,7 +31,7 @@ function Navbar() {
         <>
             <div className='shadow w-full h-11 md:h-14 shadow-zinc-200 fixed top-0 z-50'>
                 <div className='h-full text-lg bg-white w-full'>
-                    <div className='max-w-screen-2lg mx-auto flex-between h-full px-6'>
+                    <div className='max-w-screen-2lg mx-auto flex-between h-full px-4'>
                         <div className='flex-center h-full'>
                             <span
                                 className='text-3xl md:mr-8 cursor-pointer'
@@ -64,7 +64,7 @@ function Navbar() {
                             </Link>
                         </div>
                         <Link href='/'>
-                            <div className='h-full py-3 md:py-4 cursor-pointer select-none'>
+                            <div className='h-full py-[10px] md:py-4 cursor-pointer select-none'>
                                 <img
                                     src='/logo.svg'
                                     alt='Woven'

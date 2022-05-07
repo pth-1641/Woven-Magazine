@@ -6,8 +6,8 @@ import {
     limit,
     startAfter,
     where,
+    orderBy,
 } from 'firebase/firestore/lite';
-import { async } from '@firebase/util';
 
 export const getData = (dbName) => getDocs(collection(db, dbName));
 
@@ -20,6 +20,7 @@ export const getDataWithLimit = (dbName, amount) => {
 export const getNextData = (dbName, amount, lastVisible) => {
     const next = query(
         collection(db, dbName),
+        orderBy('id'),
         startAfter(lastVisible),
         limit(amount)
     );

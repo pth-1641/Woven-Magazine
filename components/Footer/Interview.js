@@ -15,7 +15,7 @@ function Interview() {
     };
 
     return (
-        <div className='w-full px-6 py-20 bg-gray-100'>
+        <div className='w-full px-5 py-20 bg-gray-100'>
             <h1 className='footer-title'>
                 TELL US YOUR <span className='block'>THOUGHTS</span>
             </h1>

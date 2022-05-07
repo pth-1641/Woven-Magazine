@@ -14,7 +14,7 @@ function Film() {
                 />
                 <PostCategories title='the films' firstLink='blogs' />
                 <Link href='/films/apple-pies'>
-                    <a className='grid grid-cols-2'>
+                    <a className='grid grid-cols-1 md:grid-cols-2'>
                         <div className='w-full bg-white p-5 hover:bg-cyan-100'>
                             <h2 className='card-title'>
                                 Salted Caramel Apple Hand Pies

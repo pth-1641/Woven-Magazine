@@ -4,7 +4,7 @@ function FAQ() {
     return (
         <div className='w-full py-20 bg-gray-100'>
             <h1 className='footer-title pb-10'>FAQ</h1>
-            <div className='max-w-lg mx-auto px-6'>
+            <div className='max-w-lg mx-auto px-5'>
                 <h3 className='info-title'>SHIPPING</h3>
                 <p className='info-detail'>
                     Shipments are batched twice a week from our fulfillment

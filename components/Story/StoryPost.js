@@ -4,7 +4,12 @@ function StoryPost({ story }) {
     return (
         <article className='overflow-hidden group'>
             <div className='relative'>
-                <img src={story.thumbnail} alt={story.title} loading='lazy' />
+                <img
+                    src={story.thumbnail}
+                    alt={story.title}
+                    loading='lazy'
+                    className='w-full'
+                />
                 <div className='absolute inset-0 bg-white-0.9 flex-col hidden group-hover:flex-center'>
                     <span className='font-medium text-emerald-500 mb-2 text-lg tracking-wider'>
                         READ MORE

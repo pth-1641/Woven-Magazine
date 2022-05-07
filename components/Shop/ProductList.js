@@ -8,7 +8,6 @@ function Product() {
 
     useEffect(() => {
         async function fetchData() {
-            // Fetching data from firestore
             const firestoreData = [];
             const querySnapshot = await getData('Shop');
             querySnapshot.forEach((doc) => {
@@ -26,7 +25,7 @@ function Product() {
     };
 
     return (
-        <div className='py-14 max-w-screen-2lg mx-auto px-10'>
+        <div className='py-14 max-w-screen-2lg mx-auto px-5 md:px-10'>
             <div className='flex-between text-sm'>
                 <h3 className='hidden md:block'>WOVEN GOODS</h3>
                 <div>

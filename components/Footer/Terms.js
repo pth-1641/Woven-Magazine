@@ -6,7 +6,7 @@ function Term() {
             <h1 className='footer-title pb-10'>
                 TERMS <span className='block'>& CONDITIONS</span>
             </h1>
-            <div className='max-w-lg mx-auto px-6'>
+            <div className='max-w-lg mx-auto px-5'>
                 <h3 className='info-title'>PURCHASES</h3>
                 <p className='info-detail'>
                     Shop items are listed in USD. If you are purchasing from an
