@@ -1,7 +1,10 @@
 function ProductItem({ product }) {
     return (
         <li className='text-center'>
-            <div className='relative group'>
+            <div
+                className='relative group min-h-[330px] bg-gray-200'
+                onClick={() => console.log(product.id)}
+            >
                 <img
                     src={product.thumbnail}
                     alt={product.title}

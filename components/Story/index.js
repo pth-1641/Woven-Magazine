@@ -7,15 +7,11 @@ import {
 import StoryPost from './StoryPost';
 import PostCategories from '../PostCategories';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useRouter } from 'next/router';
 
-function Story() {
+function Story({ category }) {
     const [lastDoc, setLastDoc] = useState(null);
     const [isMore, setIsMore] = useState(true);
     const [stories, setStories] = useState([]);
-
-    const router = useRouter();
-    const category = router.query.category;
 
     const handleLoadMore = async () => {
         let nextData = [];

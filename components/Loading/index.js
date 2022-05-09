@@ -1,4 +1,4 @@
-import styles from './Loading.module.css';
+import styles from './loading.module.css';
 function Loading() {
     return (
         <div className='fixed bg-white inset-0 flex-center z-[99]'>
