@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 function PostCategories({ title, firstLink, secondLink }) {
     const [categories, setCategories] = useState([]);
     const [display, setDisplay] = useState(false);
-    const [searchCategory, setSearchCategory] = useState('sort by');
+    const [searchCategory, setSearchCategory] = useState(null);
 
     const router = useRouter();
 
@@ -30,9 +30,8 @@ function PostCategories({ title, firstLink, secondLink }) {
     }, []);
 
     useEffect(() => {
-        setSearchCategory(router.query.category);
-        console.log(router.query.category);
-    }, [searchCategory]);
+        setSearchCategory(router.query.category ?? 'sort by');
+    }, [router.query.category]);
 
     const searchByCategory = (category) => {
         router.push(`/story?category=${category.toLowerCase()}`);

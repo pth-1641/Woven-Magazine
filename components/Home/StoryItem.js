@@ -3,7 +3,7 @@ import Image from 'next/image';
 function StoryItem({ story }) {
     return (
         <article className='w-full group overflow-hidden md:max-w-2md cursor-pointer'>
-            <div className='w-full max-h-80 relative'>
+            <div className='w-full max-h-80 relative min-h-[310px] bg-gray-300'>
                 <img
                     className='w-full object-cover'
                     src={story.thumbnail_home}

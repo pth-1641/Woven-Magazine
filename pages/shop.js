@@ -1,16 +1,32 @@
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Shop/Banner';
 import ProductList from '../components/Shop/ProductList';
 import Footer from '../components/Footer';
 import { getData } from '../firebase/fetchData';
+import Loading from '../components/Loading';
+import PageTitle from '../components/PageTitle';
 
 function Shop({ products }) {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(false);
+    }, []);
+
     return (
         <>
-            <Navbar />
-            <Banner />
-            <ProductList products={products} />
-            <Footer />
+            <PageTitle title='Products Archive' />
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Navbar />
+                    <Banner />
+                    <ProductList products={products} />
+                    <Footer />
+                </>
+            )}
         </>
     );
 }

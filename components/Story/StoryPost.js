@@ -3,7 +3,7 @@ import Image from 'next/image';
 function StoryPost({ story }) {
     return (
         <article className='overflow-hidden group'>
-            <div className='relative'>
+            <div className='relative min-h-[350px] bg-gray-300'>
                 <img
                     src={story.thumbnail}
                     alt={story.title}

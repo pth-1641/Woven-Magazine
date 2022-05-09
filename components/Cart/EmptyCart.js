@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 function EmptyCart() {
     return (
         <>
@@ -12,9 +14,11 @@ function EmptyCart() {
                     </em>
                 </div>
                 <em>Your cart is currently empty.</em>
-                <a className='font-poppins border-2 border-emerald-400 text-emerald-400 text-sm py-2 px-4 font-semibold duration-300 hover:text-white hover:bg-emerald-400'>
-                    RETURN TO SHOP
-                </a>
+                <Link href='/shop'>
+                    <a className='font-poppins border-2 border-emerald-400 text-emerald-400 text-sm py-2 px-4 font-semibold duration-300 hover:text-white hover:bg-emerald-400'>
+                        RETURN TO SHOP
+                    </a>
+                </Link>
             </div>
         </>
     );

@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
-import { getDataWithLimit, getNextData } from '../../firebase/fetchData';
+import {
+    getDataWithLimit,
+    getNextData,
+    getDataByCategory,
+} from '../../firebase/fetchData';
 import StoryPost from './StoryPost';
 import PostCategories from '../PostCategories';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useRouter } from 'next/router';
 
 function Story() {
     const [lastDoc, setLastDoc] = useState(null);
     const [isMore, setIsMore] = useState(true);
     const [stories, setStories] = useState([]);
+
+    const router = useRouter();
+    const category = router.query.category;
 
     const handleLoadMore = async () => {
         let nextData = [];
@@ -23,15 +31,25 @@ function Story() {
     useEffect(() => {
         async function fetchData() {
             const firestoreData = [];
-            const storiesData = await getDataWithLimit('Stories', 8);
+            const storiesData = await getDataWithLimit('Stories', 12);
             setLastDoc(storiesData.docs[storiesData.docs.length - 1]);
             storiesData.forEach((doc) => {
                 firestoreData.push(doc.data());
             });
             setStories(firestoreData);
         }
-        fetchData();
+        if (!category) fetchData();
     }, []);
+
+    useEffect(() => {
+        async function fetchDataByCategory() {
+            const firestoreData = [];
+            const dataByCategory = await getDataByCategory('Stories', category);
+            dataByCategory.forEach((doc) => firestoreData.push(doc.data()));
+            setStories(firestoreData);
+        }
+        if (category) fetchDataByCategory();
+    }, [category]);
 
     return (
         <div className='w-full max-h-max bg-gray-200 py-12 px-5'>
@@ -47,7 +65,7 @@ function Story() {
                     ))}
                 </ul>
                 <div className='mt-8'>
-                    {isMore ? (
+                    {!category && isMore ? (
                         <p
                             className='flex-center font-semibold text-sm tracking-wider cursor-pointer w-max mx-auto'
                             onClick={handleLoadMore}

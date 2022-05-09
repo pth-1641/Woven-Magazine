@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
 import { getData, getDataWithLimit } from '../firebase/fetchData';
+import PageTitle from '../components/PageTitle';
 
 function Home({ slides, blogs }) {
     const [loading, setLoading] = useState(true);
@@ -18,6 +19,10 @@ function Home({ slides, blogs }) {
 
     return (
         <>
+            <PageTitle
+                title='Home'
+                description='Woven Magazine exists to celebrate artists, craftsmen and women, and makers alike to share their stories of fear and triumph, risk and return.'
+            />
             {loading ? (
                 <Loading />
             ) : (
