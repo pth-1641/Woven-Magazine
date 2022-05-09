@@ -1,22 +1,27 @@
 import Navbar from '../components/Navbar';
 import Main from '../components/Story';
 import Footer from '../components/Footer';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import Loading from '../components/Loading';
 
 function Story() {
-    const [footerHeight, setFooterHeight] = useState(0);
-    const footerRef = useRef(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const dimensions = footerRef.current.getBoundingClientRect();
-        setFooterHeight(dimensions.height);
+        setLoading(false);
     }, []);
 
     return (
         <>
-            <Navbar />
-            <Main footerHeight={footerHeight} />
-            <Footer footerRef={footerRef} />
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Navbar />
+                    <Main />
+                    <Footer />
+                </>
+            )}
         </>
     );
 }

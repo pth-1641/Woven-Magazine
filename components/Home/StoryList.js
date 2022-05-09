@@ -5,9 +5,9 @@ import { IoIosArrowDown } from 'react-icons/io';
 import PostCategories from '../PostCategories';
 
 function StoryList() {
-    const [stories, setStories] = useState([]);
     const [lastDoc, setLastDoc] = useState(null);
     const [isMore, setIsMore] = useState(true);
+    const [stories, setStories] = useState([]);
 
     useEffect(() => {
         async function fetchData() {

@@ -4,10 +4,14 @@ import { BsPlus } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getData } from '../../firebase/fetchData';
+import { useRouter } from 'next/router';
 
 function PostCategories({ title, firstLink, secondLink }) {
     const [categories, setCategories] = useState([]);
     const [display, setDisplay] = useState(false);
+    const [searchCategory, setSearchCategory] = useState('sort by');
+
+    const router = useRouter();
 
     const toggleDisplay = () => {
         setDisplay(!display);
@@ -24,6 +28,16 @@ function PostCategories({ title, firstLink, secondLink }) {
         }
         fetchCategory();
     }, []);
+
+    useEffect(() => {
+        setSearchCategory(router.query.category);
+        console.log(router.query.category);
+    }, [searchCategory]);
+
+    const searchByCategory = (category) => {
+        router.push(`/story?category=${category.toLowerCase()}`);
+    };
+
     return (
         <>
             <div className='flex-center flex-col'>
@@ -44,14 +58,20 @@ function PostCategories({ title, firstLink, secondLink }) {
                         className='w-full flex-between pb-1 border-b border-black relative cursor-pointer'
                         onClick={toggleDisplay}
                     >
-                        SORT BY
+                        {searchCategory}
                         <span className='text-lg'>
                             <BsPlus />
                         </span>
                         {display && (
                             <ul className='absolute top-6 z-20 px-2 py-1 bg-emerald-200 w-full leading-5 max-h-64 overflow-y-scroll'>
                                 {categories.map((category, key) => (
-                                    <li key={key} className='cursor-pointer'>
+                                    <li
+                                        key={key}
+                                        className='cursor-pointer'
+                                        onClick={() =>
+                                            searchByCategory(category)
+                                        }
+                                    >
                                         {category}
                                     </li>
                                 ))}

@@ -1,5 +1,6 @@
 import { VscClose } from 'react-icons/vsc';
 import { BsArrowRight } from 'react-icons/bs';
+import Link from 'next/link'
 
 function Cart({ setDisplayCart, setDisplayShop, displayShop }) {
     return (
@@ -27,12 +28,13 @@ function Cart({ setDisplayCart, setDisplayShop, displayShop }) {
 
                 <hr className='border-gray-300 my-10' />
             </div>
-            <button className='w-full flex-center bg-emerald-400 text-white py-4 text-sm font-semibold'>
+            <Link href='/cart'>
+            <a className='w-full flex-center bg-emerald-400 text-white py-4 text-sm font-semibold'>
                 CHECKOUT{' '}
                 <span className='text-2xl ml-2'>
                     <BsArrowRight />
                 </span>
-            </button>
+            </a></Link>
         </div>
     );
 }

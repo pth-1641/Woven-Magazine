@@ -5,11 +5,8 @@ import Link from 'next/link';
 import useStore from '../../appStore/store';
 import { useRouter } from 'next/router';
 
-function Feature() {
-    const [blogs, setBlogs] = useState([]);
-
+function Blog({ blogs }) {
     const router = useRouter();
-
     const blogInfo = useStore((state) => state.setBlogInfo);
 
     const handleBlogDetail = (blog) => {
@@ -20,18 +17,6 @@ function Feature() {
         );
         router.push(`/blogs/${blog.id}`);
     };
-
-    useEffect(() => {
-        async function fetchData() {
-            const firestoreData = [];
-            const querySnapshot = await getDataWithLimit('Blogs', 4);
-            querySnapshot.forEach((doc) => {
-                firestoreData.push(doc.data());
-            });
-            setBlogs(firestoreData);
-        }
-        fetchData();
-    }, []);
 
     return (
         <div className='w-full bg-gray-200 py-10'>
@@ -69,4 +54,4 @@ function Feature() {
     );
 }
 
-export default Feature;
+export default Blog;

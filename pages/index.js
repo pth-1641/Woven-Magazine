@@ -5,19 +5,56 @@ import StoryList from '../components/Home/StoryList';
 import Films from '../components/Home/Films';
 import Blog from '../components/Home/Blog';
 import Footer from '../components/Footer';
+import { useState, useEffect } from 'react';
+import Loading from '../components/Loading';
+import { getData, getDataWithLimit } from '../firebase/fetchData';
 
-function Home() {
+function Home({ slides, blogs }) {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(false);
+    }, []);
+
     return (
         <>
-            <Navbar />
-            <Slider />
-            <About />
-            <StoryList />
-            <Films />
-            <Blog />
-            <Footer />
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Navbar />
+                    <Slider slides={slides} />
+                    <About />
+                    <StoryList />
+                    <Films />
+                    <Blog blogs={blogs} />
+                    <Footer />
+                </>
+            )}
         </>
     );
+}
+
+export async function getStaticProps() {
+    const slides = [];
+    const blogs = [];
+
+    const slidesData = await getData('Slide');
+    slidesData.forEach((doc) => {
+        slides.push(doc.data());
+    });
+
+    const blogsData = await getDataWithLimit('Blogs', 4);
+    blogsData.forEach((doc) => {
+        blogs.push(doc.data());
+    });
+
+    return {
+        props: {
+            slides,
+            blogs,
+        },
+    };
 }
 
 export default Home;

@@ -1,24 +1,8 @@
-import { getData } from '../../firebase/fetchData';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProductItem from './ProductItem';
 
-function Product() {
-    const [products, setProducts] = useState([]);
+function Product({ products }) {
     const [classify, setClassify] = useState('individual');
-
-    useEffect(() => {
-        async function fetchData() {
-            const firestoreData = [];
-            const querySnapshot = await getData('Shop');
-            querySnapshot.forEach((doc) => {
-                if (doc.data().type === classify) {
-                    firestoreData.push(doc.data());
-                }
-            });
-            setProducts(firestoreData);
-        }
-        fetchData();
-    }, [classify]);
 
     const handleClassify = (e) => {
         setClassify(e.target.innerText.toLowerCase());
@@ -42,7 +26,7 @@ function Product() {
                         className={`${
                             classify !== 'individual' && 'text-emerald-500'
                         } hover:text-emerald-500 cursor-pointer`}
-                        onClick={(e) => handleClassify(e)}
+                        onClick={handleClassify}
                     >
                         WHOLESALE
                     </a>
@@ -50,9 +34,12 @@ function Product() {
             </div>
             <hr className='mt-6 mb-10' />
             <ul className='grid grid-cols-1 gap-x-5 gap-y-14 md:grid-cols-2'>
-                {products.map((product) => (
-                    <ProductItem product={product} key={product.id} />
-                ))}
+                {products.map(
+                    (product) =>
+                        product.type === classify && (
+                            <ProductItem product={product} key={product.id} />
+                        )
+                )}
             </ul>
         </div>
     );

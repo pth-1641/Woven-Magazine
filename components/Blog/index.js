@@ -1,24 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getData } from '../../firebase/fetchData';
-import { useState, useEffect } from 'react';
 import BlogPost from './BlogPost';
 
-function Blog() {
-    const [blogs, setBlogs] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const firestoreData = [];
-            const querySnapshot = await getData('Blogs');
-            querySnapshot.forEach((doc) => {
-                firestoreData.push(doc.data());
-            });
-            setBlogs(firestoreData);
-        }
-        fetchData();
-    }, []);
-
+function Blog({ blogs }) {
     return (
         <div className='bg-gray-100 p-5 md:p-10'>
             <div className='max-w-5xl mx-auto'>

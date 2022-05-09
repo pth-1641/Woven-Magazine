@@ -1,26 +1,14 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
-import { getData } from '../../firebase/fetchData';
 import SwiperCore, { EffectFade, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 SwiperCore.use([Navigation]);
 
-function Slider() {
+function Slider({ slides }) {
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
-    const [slides, setSlides] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const slideData = await getData('Slide');
-            slideData.forEach((doc) => {
-                setSlides((prev) => [...prev, doc.data()]);
-            });
-        }
-        fetchData();
-    }, []);
 
     const scrollDown = () => {
         window.scrollBy(0, window.innerHeight);

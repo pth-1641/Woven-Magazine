@@ -32,3 +32,13 @@ export const getDetail = (dbName, id) => {
     const q = query(ref, where('id', '==', Number(id)));
     return getDocs(q);
 };
+
+export const getDataByCategory = (dbName, category) => {
+    category = category
+        .split(' ')
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(' ');
+    const ref = collection(db, dbName);
+    const q = query(ref, where('category', '==', category));
+    return getDocs(q);
+};

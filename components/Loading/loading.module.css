@@ -3,13 +3,13 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    width: 2em;
+    width: 4rem;
 }
 
 .span {
-    width: 0.3em;
-    height: 1em;
-    background-color: #3cefff;
+    width: 0.6em;
+    height: 2em;
+    background-color: #6ee7b7;
 }
 
 .span:nth-of-type(1) {
