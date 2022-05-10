@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import Loading from '../Loading';
 
-function StayInTouch({ setDisplay, display }) {
-    const fadedEffect = display ? 'opacity-100 visible' : 'invisible opacity-0';
+function StayInTouch({ setDisplay }) {
     const [isConfirm, setIsConfirm] = useState(false);
     const [emailVal, setEmailVal] = useState('');
     const [borderColor, setBorderColor] = useState('border-gray-400');
@@ -25,12 +23,8 @@ function StayInTouch({ setDisplay, display }) {
     };
 
     return (
-        <div
-            className={`hidden lg:flex-center fixed inset-0 bg-white-0.9 z-50 transition duration-300 ${fadedEffect}`}
-        >
-            <div
-                className={`w-full max-w-2xl bg-white p-4 shadow-xl relative ${fadedEffect}`}
-            >
+        <div className='hidden lg:flex-center fixed inset-0 bg-white-0.9 z-50 duration-300'>
+            <div className='w-full max-w-2xl bg-white p-4 shadow-xl relative'>
                 {isConfirm ? (
                     <div className='flex-center flex-col gap-y-5 py-28'>
                         <h3 className='text-xl font-medium'>
@@ -68,7 +62,6 @@ function StayInTouch({ setDisplay, display }) {
                                 who we’re meeting and where we’re headed next in
                                 our monthly newsletter!
                             </p>
-                            <Loading />
                             <form className='grid grid-cols-2 gap-x-2'>
                                 <input
                                     type='email'

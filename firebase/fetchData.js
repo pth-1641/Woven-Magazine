@@ -42,3 +42,17 @@ export const getDataByCategory = (dbName, category) => {
     const q = query(ref, where('category', '==', category));
     return getDocs(q);
 };
+
+export const getDataBySearch = (dbName, keyword) => {
+    const ref = collection(db, dbName);
+    const q = query(ref, where('author', '>=', keyword));
+    return getDocs(q);
+};
+
+async function fetchData() {
+    const data = await getDataBySearch('Stories', 'Esby');
+    console.log(data);
+    // data.forEach((doc) => console.log(doc.data()));
+}
+
+fetchData();

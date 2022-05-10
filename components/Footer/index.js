@@ -39,7 +39,7 @@ function Footer() {
                     &#169; WOVEN {new Date().getFullYear()}
                 </li>
             </ul>
-            <StayInTouch setDisplay={setDisplay} display={display} />
+            {display && <StayInTouch setDisplay={setDisplay} />}
         </div>
     );
 }

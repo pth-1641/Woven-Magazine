@@ -1,6 +1,16 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 function StoryItem({ story }) {
+    const router = useRouter();
+    const handleStoryCategory = () => {
+        const category = story.category
+            .split(' ')
+            .map((word) => word[0].toLowerCase() + word.slice(1))
+            .join(' ');
+        router.push(`/story?category=${category}`);
+    };
+
     return (
         <article className='w-full group overflow-hidden md:max-w-2md cursor-pointer'>
             <div className='w-full max-h-80 relative min-h-[310px] bg-gray-300'>
@@ -22,7 +32,7 @@ function StoryItem({ story }) {
             <div className='w-full max-h-max p-4 bg-white relative group-hover:bg-cyan-100 h-1/2'>
                 <p className='uppercase text-xs font-medium'>
                     <span className='text-gray-500'>{story.author}</span> |{' '}
-                    {story.category}
+                    <span onClick={handleStoryCategory}>{story.category}</span>
                 </p>
                 <h2 className='card-title'>{story.title}</h2>
                 <p className='text-sm mt-2'>{story.overview}</p>

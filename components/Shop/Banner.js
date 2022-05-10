@@ -13,7 +13,7 @@ function Banner() {
                 </h1>
                 <a
                     type='button'
-                    className='border-2 border-white font-medium px-8 py-1.5 mt-6 transition duration-500 hover:text-black hover:bg-white'
+                    className='border-2 border-white font-medium px-8 py-1.5 mt-6 duration-500 hover:text-black hover:bg-white'
                 >
                     CHECK IT OUT
                 </a>

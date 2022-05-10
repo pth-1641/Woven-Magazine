@@ -1,18 +1,19 @@
+import Link from 'next/link';
+
 function ProductItem({ product }) {
     return (
         <li className='text-center'>
-            <div
-                className='relative group min-h-[330px] bg-gray-200'
-                onClick={() => console.log(product.id)}
-            >
-                <img
-                    src={product.thumbnail}
-                    alt={product.title}
-                    loading='lazy'
-                    className='w-full'
-                />
-                <span className='absolute inset-0 bg-white-0.5 opacity-0 group-hover:opacity-100 transition duration-300'></span>
-            </div>
+            <Link href={`/shop/${product.id}`}>
+                <div className='relative group min-h-[330px] bg-gray-200 cursor-pointer'>
+                    <img
+                        src={product.thumbnail}
+                        alt={product.title}
+                        loading='lazy'
+                        className='w-full'
+                    />
+                    <span className='absolute inset-0 bg-white-0.5 opacity-0 group-hover:opacity-100 duration-300'></span>
+                </div>
+            </Link>
             <h3 className='font-serif text-xl font-extralight mt-3'>
                 {product.title}
             </h3>

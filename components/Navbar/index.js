@@ -53,7 +53,7 @@ function Navbar() {
                                     </a>
                                     {displayShop && <Shop />}
                                     <span
-                                        className={`hidden transition duration-100 md:block ${
+                                        className={`hidden duration-100 md:block ${
                                             displayShop &&
                                             'group-hover:rotate-90'
                                         }`}

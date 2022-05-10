@@ -11,7 +11,7 @@ function Slider({ slides }) {
     const navigationNextRef = useRef(null);
 
     const scrollDown = () => {
-        window.scrollBy(0, window.innerHeight);
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
     };
 
     return (
