@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { getDataWithLimit } from '../../firebase/fetchData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import Link from 'next/link';
 import useStore from '../../appStore/store';

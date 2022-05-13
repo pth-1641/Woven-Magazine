@@ -105,12 +105,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
-            {displaySearch && (
-                <Search
-                    setDisplaySearch={setDisplaySearch}
-                    setDisplayShop={setDisplayShop}
-                />
-            )}
+            {displaySearch && <Search setDisplaySearch={setDisplaySearch} />}
             {displayNavList && <NavList />}
         </>
     );

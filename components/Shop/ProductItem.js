@@ -4,7 +4,7 @@ function ProductItem({ product }) {
     return (
         <li className='text-center'>
             <Link href={`/shop/${product.id}`}>
-                <div className='relative group min-h-[330px] bg-gray-200 cursor-pointer'>
+                <div className='relative group bg-gray-200 cursor-pointer aspect-[67/44]'>
                     <img
                         src={product.thumbnail}
                         alt={product.title}

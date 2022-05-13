@@ -24,8 +24,8 @@
     .section-title {
         @apply tracking-wider font-semibold text-sm;
     }
-    .card-hover {
-        @apply group-hover:flex-center hidden absolute z-10 inset-0 bg-white-0.9 flex-col tracking-widest font-medium text-xl text-emerald-500;
+    .story-hover {
+        @apply md:group-hover:flex-center hidden absolute z-10 inset-0 bg-white-0.9 flex-col tracking-widest font-medium text-xl text-emerald-500;
     }
     .form-input {
         @apply w-full border-b-2 border-green-300 outline-none uppercase text-xs font-semibold pb-2 mb-4;

@@ -48,11 +48,3 @@ export const getDataBySearch = (dbName, keyword) => {
     const q = query(ref, where('author', '>=', keyword));
     return getDocs(q);
 };
-
-async function fetchData() {
-    const data = await getDataBySearch('Stories', 'Esby');
-    console.log(data);
-    // data.forEach((doc) => console.log(doc.data()));
-}
-
-fetchData();

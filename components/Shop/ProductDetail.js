@@ -2,8 +2,9 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { getDetail } from '../../firebase/fetchData';
 import Link from 'next/link';
-import SlideDetail from './SlideDetail';
+import ProductSlide from './ProductSlide';
 import PageTitle from '../PageTitle';
+import useStore from '../../appStore/store';
 
 function ProductDetail() {
     const router = useRouter();
@@ -11,6 +12,8 @@ function ProductDetail() {
 
     const [productDetail, setProductDetail] = useState({});
     const [bookedAmount, setBookedAmount] = useState(1);
+    const addBook = useStore((state) => state.addBook);
+    const calculatingAmount = useStore((state) => state.calculatingAmount);
 
     useEffect(() => {
         async function fetchData() {
@@ -22,6 +25,14 @@ function ProductDetail() {
 
     const handleAddToCart = (e) => {
         e.preventDefault();
+        addBook({
+            id: productDetail.id,
+            title: productDetail.title,
+            quantity: bookedAmount,
+            thumbnail: productDetail.images[1],
+            price: productDetail.sale,
+        });
+        calculatingAmount();
     };
 
     const handleAmount = (e) => {
@@ -126,7 +137,7 @@ function ProductDetail() {
                         </div>
                     </div>
                     <div className='col-span-6'>
-                        <SlideDetail images={productDetail?.images} />
+                        <ProductSlide images={productDetail?.images} />
                     </div>
                 </div>
                 <hr className='border-gray-300 my-10' />

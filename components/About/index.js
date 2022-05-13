@@ -45,10 +45,13 @@ function About() {
                             </h3>
                             <div className='grid grid-cols-2 gap-3'>
                                 <figure>
-                                    <img
-                                        src='https://i.ibb.co/w4vxBKj/jeremy-team-web2.jpg'
-                                        alt='founder'
-                                    />
+                                    <div className='bg-gray-200 apsect-[2/5]'>
+                                        <img
+                                            src='https://i.ibb.co/w4vxBKj/jeremy-team-web2.jpg'
+                                            alt='founder'
+                                            className='apsect-[2/5]'
+                                        />
+                                    </div>
                                     <figcaption className='text-center font-semibold mt-2'>
                                         JEREMY BARNES
                                         <em className='block text-sm font-serif text-gray-500'>
@@ -80,7 +83,7 @@ function About() {
                                 <span className='text-highlight'>FACEBOOK</span>
                                 , tweet us on{' '}
                                 <span className='text-highlight'>TWITTER</span>,
-                                or follow us around on
+                                or follow us around on{' '}
                                 <span className='text-highlight'>
                                     INSTAGRAM
                                 </span>

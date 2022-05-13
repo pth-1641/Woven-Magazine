@@ -1,13 +1,27 @@
+import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Main from '../../components/Blog/BlogDetail';
 import Footer from '../../components/Footer';
+import Loading from '../../components/Loading';
 
 function BlogDetail() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(false);
+    }, []);
+
     return (
         <>
-            <Navbar />
-            <Main />
-            <Footer />
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <Navbar />
+                    <Main />
+                    <Footer />
+                </>
+            )}
         </>
     );
 }

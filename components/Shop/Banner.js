@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 function Banner() {
     return (
         <div
@@ -11,12 +13,14 @@ function Banner() {
                 <h1 className='font-serif text-4xl md:text-6xl'>
                     future <span className='font-thin'>—</span> past
                 </h1>
+                <Link href="/shop/6">
                 <a
                     type='button'
                     className='border-2 border-white font-medium px-8 py-1.5 mt-6 duration-500 hover:text-black hover:bg-white'
                 >
                     CHECK IT OUT
                 </a>
+                </Link>
             </div>
             <div className='absolute bottom-10 max-w-screen-2lg w-full text-sm tracking-wider px-10 hidden md:flex-between'>
                 <h2>SHIPS WORLDWIDE</h2>

@@ -12,7 +12,7 @@ function Shop() {
             // Fetching data from firestore
             const querySnapshot = await getData('Shop');
             querySnapshot.forEach((doc) => {
-                if (doc.data().square_img !== null) {
+                if (doc.data().square_img) {
                     firestoreData.push(doc.data());
                 }
             });
@@ -33,7 +33,7 @@ function Shop() {
                         <Link href={`/shop/${item.id}`} key={item.id}>
                             <div className='relative cursor-pointer'>
                                 <img src={item.square_img} className='w-full' />
-                                <div className='absolute inset-0 flex-center flex-col text-lg bg-white-0.9 opacity-0 hover:opacity-100 duration-300'>
+                                <div className='absolute inset-0 flex-center flex-col text-lg bg-white-0.9 opacity-0 hover:opacity-100 duration-300 text-center'>
                                     <h3 className='font-serif'>{item.title}</h3>
                                     <p className='font-semibold text-emerald-500 text-sm'>
                                         {item.sale ? (

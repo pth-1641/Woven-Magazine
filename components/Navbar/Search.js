@@ -2,7 +2,7 @@ import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-function Search({ setDisplaySearch, setDisplayShop }) {
+function Search({ setDisplaySearch }) {
     const [searchValue, setSearchValue] = useState('');
     const router = useRouter();
 
@@ -14,13 +14,15 @@ function Search({ setDisplaySearch, setDisplayShop }) {
     const handleEscape = (e) => {
         if (e.keyCode === 27) {
             setDisplaySearch(false);
-            setDisplayShop(true);
         }
     };
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.push(`/story?q=${searchValue}`);
+        setDisplaySearch(false);
+        if (searchValue) {
+            router.push(`/story?q=${searchValue}`);
+        }
     };
 
     return (

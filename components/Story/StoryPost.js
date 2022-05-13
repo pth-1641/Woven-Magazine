@@ -2,15 +2,15 @@ import Image from 'next/image';
 
 function StoryPost({ story }) {
     return (
-        <article className='overflow-hidden group'>
-            <div className='relative min-h-[350px] bg-gray-300'>
+        <article className='overflow-hidden group cursor-pointer'>
+            <div className='relative bg-gray-300 aspect-[44/65]'>
                 <img
                     src={story.thumbnail}
                     alt={story.title}
                     loading='lazy'
                     className='w-full'
                 />
-                <div className='absolute inset-0 bg-white-0.9 flex-col hidden group-hover:flex-center'>
+                <div className='story-hover'>
                     <span className='font-medium text-emerald-500 mb-2 text-lg tracking-wider'>
                         READ MORE
                     </span>
@@ -22,7 +22,7 @@ function StoryPost({ story }) {
                     />
                 </div>
             </div>
-            <div className='px-5 py-3 bg-white h-full group-hover:bg-emerald-100'>
+            <div className='px-5 py-3 bg-white h-full md:group-hover:bg-emerald-100'>
                 <h4 className='text-xs uppercase text-gray-400 tracking-widest'>
                     {story.author}
                 </h4>
