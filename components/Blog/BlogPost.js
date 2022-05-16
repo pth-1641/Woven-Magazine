@@ -12,7 +12,6 @@ function BlogPost({ blog }) {
             'blogInfo',
             JSON.stringify({ title: blog.title, time: blog.time })
         );
-        console.log(localStorage.blogInfo);
         router.push(`/blogs/${blog.id}`);
     };
 

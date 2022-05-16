@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';
@@ -9,7 +9,10 @@ function Cart({ setDisplayCart }) {
     const amount = useStore((state) => state.amount);
     const increaseBook = useStore((state) => state.increaseBook);
     const decreaseBook = useStore((state) => state.decreaseBook);
-    const calculatingAmount = useStore((state) => state.calculatingAmount);
+    const calculatingAmount = useCallback(
+        useStore((state) => state.calculatingAmount),
+        []
+    );
 
     useEffect(() => {
         calculatingAmount();
