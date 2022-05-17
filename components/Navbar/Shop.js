@@ -9,14 +9,17 @@ function Shop() {
 
     useEffect(() => {
         async function fetchData() {
-            // Fetching data from firestore
-            const querySnapshot = await getData('Shop');
-            querySnapshot.forEach((doc) => {
-                if (doc.data().square_img) {
-                    firestoreData.push(doc.data());
-                }
-            });
-            setShopItem(firestoreData);
+            try {
+                const querySnapshot = await getData('Shop');
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().square_img) {
+                        firestoreData.push(doc.data());
+                    }
+                });
+                setShopItem(firestoreData);
+            } catch (e) {
+                console.log(e.message);
+            }
         }
         fetchData();
     }, []);

@@ -1,10 +1,35 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import useStore from '../../appStore/store';
+import { useRouter } from 'next/router';
 
 function Cart() {
     const [states, setStates] = useState([]);
     const [countries, setCountries] = useState([]);
+
+    const books = useStore((state) => state.books);
+    const amount = useStore((state) => state.amount);
+    const calculatingAmount = useStore((state) => state.calculatingAmount);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        async function fetchCountry() {
+            try {
+                const res = await fetch(
+                    'https://countriesnow.space/api/v0.1/countries'
+                );
+                const data = await res.json();
+                setCountries(data.data);
+                setStates(data.data[0].cities);
+            } catch (e) {
+                console.log(e.message);
+            }
+        }
+        fetchCountry();
+        calculatingAmount();
+    }, []);
 
     const getStates = (e) => {
         const iso2 = e.target.value;
@@ -12,22 +37,16 @@ function Cart() {
         setStates(country.cities);
     };
 
-    useEffect(() => {
-        async function fetchCountry() {
-            const res = await fetch(
-                'https://countriesnow.space/api/v0.1/countries'
-            );
-            const data = await res.json();
-            setCountries(data.data);
-            setStates(data.data[0].cities);
-        }
-        fetchCountry();
-    }, []);
-
-    useEffect(() => {}, []);
+    const handlePayment = (e) => {
+        e.preventDefault();
+        alert(
+            'Thanks for the order! We will notify when the order is prepared.'
+        );
+        router.push('/shop');
+    };
 
     return (
-        <div className='max-w-[1120px] mx-auto py-14'>
+        <div className='max-w-[1120px] mx-auto py-10 px-6 md:py-14 md:px-16 xl:px-0'>
             <Link href='/shop'>
                 <a className='text-highlight text-base flex-center w-max mb-6'>
                     <span className='text-xl'>
@@ -36,12 +55,15 @@ function Cart() {
                     BACK TO SHOP
                 </a>
             </Link>
-            <div className='grid grid-cols-2 gap-16'>
-                <form className='grid gap-6'>
+            <form
+                className='grid md:grid-cols-2 gap-16'
+                onSubmit={handlePayment}
+            >
+                <div className='grid gap-6'>
                     <h3 className='font-serif text-3xl font-thin'>
                         Billing Details
                     </h3>
-                    <div className='flex-between gap-4'>
+                    <div className='grid md:grid-cols-2 gap-4'>
                         <div>
                             <label className='font-medium'>
                                 FIRST NAME{' '}
@@ -141,7 +163,7 @@ function Cart() {
                             rows='4'
                         />
                     </div>
-                </form>
+                </div>
                 <div className='grid gap-2 h-max font-medium'>
                     <h3 className='font-serif text-3xl font-thin'>
                         Your order
@@ -151,23 +173,29 @@ function Cart() {
                         <span>TOTAL</span>
                     </div>
                     <hr className='border-gray-300' />
-                    <div className='flex-between py-3'>
-                        <div className='flex-center gap-2'>
-                            <img
-                                src='https://wovenmagazine.com/content/uploads/2018/11/Issue4_Cover_Dropdown-300x300.jpg'
-                                alt=''
-                                className='w-20 h-20'
-                            />
-                            <h5 className='font-serif'>
-                                Woven Issue Four - Seconds Sale × 4
-                            </h5>
+                    {books.map((book) => (
+                        <div key={book.id}>
+                            <div className='flex-between py-3'>
+                                <div className='flex-center gap-2'>
+                                    <img
+                                        src={book.thumbnail}
+                                        alt={book.title}
+                                        className='w-20 h-20'
+                                    />
+                                    <h5 className='font-serif'>
+                                        {book.title} × {book.quantity}
+                                    </h5>
+                                </div>
+                                <span className='text-gray-400'>
+                                    ${book.quantity * book.price}
+                                </span>
+                            </div>
+                            <hr className='border-gray-300' />
                         </div>
-                        <span className='text-gray-400'>$48</span>
-                    </div>
-                    <hr className='border-gray-300' />
+                    ))}
                     <div className='flex-between'>
                         <span>SUBTOTAL</span>
-                        <span>$48</span>
+                        <span>${amount}</span>
                     </div>
                     <hr className='border-gray-300' />
                     <div className='flex-between'>
@@ -177,11 +205,11 @@ function Cart() {
                     <hr className='border-gray-300' />
                     <div className='flex-between'>
                         <span>TOTAL</span>
-                        <span>$48</span>
+                        <span>${amount}</span>
                     </div>
                     <hr className='border-gray-300' />
                     <div className='text-sm my-4 flex-center gap-2 justify-start'>
-                        <input type='checkbox' />
+                        <input type='checkbox' required />
                         <label>
                             I’VE READ AND ACCEPT THE{' '}
                             <Link href='/term-conditions'>
@@ -192,11 +220,15 @@ function Cart() {
                             <span className='text-red-600'>*</span>
                         </label>
                     </div>
-                    <button className='btn bg-pink-500 hover:bg-pink-600'>
+
+                    <button
+                        className='btn bg-pink-500 hover:bg-pink-600'
+                        type='submit'
+                    >
                         PROCEED
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }

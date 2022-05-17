@@ -14,25 +14,33 @@ function Story({ category }) {
     const [stories, setStories] = useState([]);
 
     const handleLoadMore = async () => {
-        let nextData = [];
-        const next = await getNextData('Stories', 8, lastDoc);
-        next.forEach((doc) => nextData.push(doc.data()));
-        setLastDoc(next.docs[next.docs.length - 1]);
-        setStories([...stories, ...nextData]);
-        if (next.empty) {
-            setIsMore(false);
+        try {
+            let nextData = [];
+            const next = await getNextData('Stories', 8, lastDoc);
+            next.forEach((doc) => nextData.push(doc.data()));
+            setLastDoc(next.docs[next.docs.length - 1]);
+            setStories([...stories, ...nextData]);
+            if (next.empty) {
+                setIsMore(false);
+            }
+        } catch (e) {
+            console.log(e.message);
         }
     };
 
     useEffect(() => {
         async function fetchData() {
-            const firestoreData = [];
-            const storiesData = await getDataWithLimit('Stories', 12);
-            setLastDoc(storiesData.docs[storiesData.docs.length - 1]);
-            storiesData.forEach((doc) => {
-                firestoreData.push(doc.data());
-            });
-            setStories(firestoreData);
+            try {
+                const firestoreData = [];
+                const storiesData = await getDataWithLimit('Stories', 12);
+                setLastDoc(storiesData.docs[storiesData.docs.length - 1]);
+                storiesData.forEach((doc) => {
+                    firestoreData.push(doc.data());
+                });
+                setStories(firestoreData);
+            } catch (e) {
+                console.log(e.message);
+            }
         }
         if (!category) fetchData();
     }, []);

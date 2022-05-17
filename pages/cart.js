@@ -9,6 +9,7 @@ import useStore from '../appStore/store';
 
 function Cart() {
     const [loading, setLoading] = useState(true);
+    const books = useStore((state) => state.books);
 
     useEffect(() => {
         setLoading(false);
@@ -22,7 +23,7 @@ function Cart() {
             ) : (
                 <>
                     <Navbar />
-                    <CartWithItem />
+                    {books.length ? <CartWithItem /> : <EmptyCart />}
                     <Footer />
                 </>
             )}

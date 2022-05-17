@@ -19,12 +19,16 @@ function PostCategories({ title, firstLink, secondLink }) {
 
     useEffect(() => {
         async function fetchCategory() {
-            const categories = [];
-            const querySnapshot = await getData('Stories');
-            querySnapshot.forEach((doc) => {
-                categories.push(doc.data().category);
-            });
-            setCategories([...new Set(categories)].sort());
+            try {
+                const categories = [];
+                const querySnapshot = await getData('Stories');
+                querySnapshot.forEach((doc) => {
+                    categories.push(doc.data().category);
+                });
+                setCategories([...new Set(categories)].sort());
+            } catch (e) {
+                console.log(e.message);
+            }
         }
         fetchCategory();
     }, []);

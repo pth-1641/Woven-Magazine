@@ -17,8 +17,12 @@ function ProductDetail() {
 
     useEffect(() => {
         async function fetchData() {
-            const result = await getDetail('Product_Detail', productId);
-            result.forEach((doc) => setProductDetail(doc.data()));
+            try {
+                const result = await getDetail('Product_Detail', productId);
+                result.forEach((doc) => setProductDetail(doc.data()));
+            } catch (e) {
+                console.log(e.message);
+            }
         }
         fetchData();
     }, [router.isReady, productId]);

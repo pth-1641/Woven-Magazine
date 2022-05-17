@@ -13,8 +13,12 @@ function BlogDetail() {
 
     useEffect(() => {
         async function fetchData() {
-            const result = await getDetail('Blog_detail', blogId);
-            result.forEach((doc) => setDetail(doc.data()));
+            try {
+                const result = await getDetail('Blog_detail', blogId);
+                result.forEach((doc) => setDetail(doc.data()));
+            } catch (e) {
+                console.log(e.message);
+            }
         }
         fetchData();
     }, [router.isReady]);

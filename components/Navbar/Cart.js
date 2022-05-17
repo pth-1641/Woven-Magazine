@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';

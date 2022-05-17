@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 function StoryItem({ story }) {
     const router = useRouter();
+
     const handleStoryCategory = () => {
         const category = story.category
             .split(' ')
