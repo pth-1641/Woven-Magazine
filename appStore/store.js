@@ -2,7 +2,9 @@ import create from 'zustand';
 
 const useStore = create((set) => ({
     amount: 0,
-    books: localStorage.books ? JSON.parse(localStorage.books) : [],
+    books: [],
+
+    setLocalBooks: (books) => set(() => ({ books: books })),
 
     calculatingAmount: () =>
         set((state) => ({

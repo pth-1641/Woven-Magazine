@@ -9,13 +9,18 @@ function Cart({ setDisplayCart }) {
     const amount = useStore((state) => state.amount);
     const increaseBook = useStore((state) => state.increaseBook);
     const decreaseBook = useStore((state) => state.decreaseBook);
+    const setLocalBooks = useStore((state) => state.setLocalBooks);
     const calculatingAmount = useCallback(
         useStore((state) => state.calculatingAmount),
         []
     );
 
     useEffect(() => {
-        calculatingAmount();
+        if (localStorage.books) {
+            setLocalBooks(JSON.parse(localStorage.books));
+            calculatingAmount();
+        }
+        return;
     }, []);
 
     return (
