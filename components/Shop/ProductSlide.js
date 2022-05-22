@@ -17,7 +17,7 @@ function SlideDetail({ images }) {
         >
             {images?.map((img) => (
                 <SwiperSlide key={img}>
-                    <img src={img} className='mx-auto' />
+                    <img src={img} alt={img} className='mx-auto' />
                 </SwiperSlide>
             ))}
         </Swiper>

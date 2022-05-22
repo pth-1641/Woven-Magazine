@@ -3,7 +3,7 @@ import Link from 'next/link';
 function ProductItem({ product }) {
     return (
         <li className='text-center'>
-            <Link href={`/shop/${product.id}`}>
+            <Link href={`/shop/${product.id}`} passHref>
                 <div className='relative group bg-gray-200 cursor-pointer aspect-[67/44]'>
                     <img
                         src={product.thumbnail}

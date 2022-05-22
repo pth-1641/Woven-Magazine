@@ -124,13 +124,13 @@ function ProductDetail() {
                                     added at checkout and based on customer’s
                                     shipping postal zone. For more information
                                     please visit our{' '}
-                                    <Link href='/faq'>
+                                    <Link href='/faq' passHref>
                                         <span className='text-highlight'>
                                             FAQ
                                         </span>
                                     </Link>{' '}
                                     and{' '}
-                                    <Link href='/term-conditions'>
+                                    <Link href='/term-conditions' passHref>
                                         <span className='text-highlight'>
                                             Terms & Conditions
                                         </span>

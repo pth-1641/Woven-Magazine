@@ -17,6 +17,7 @@ function StoryItem({ story }) {
             <div className='w-full max-h-80 relative bg-gray-300 aspect-[3/2]'>
                 <img
                     className='w-full object-cover relative'
+                    alt={story.title}
                     src={story.thumbnail_home}
                 />
                 <div className='story-hover'>

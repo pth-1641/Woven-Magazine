@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { getData } from '../../firebase/fetchData';
 import { BsArrowRight } from 'react-icons/bs';
 
 function Shop() {
-    const firestoreData = [];
     const [shopItem, setShopItem] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             try {
+                const firestoreData = [];
                 const querySnapshot = await getData('Shop');
                 querySnapshot.forEach((doc) => {
                     if (doc.data().square_img) {
@@ -33,9 +33,13 @@ function Shop() {
             <div className='-translate-y-[100vh] h-0 group-hover:translate-y-0 duration-700'>
                 <div className='grid grid-cols-4'>
                     {shopItem.map((item) => (
-                        <Link href={`/shop/${item.id}`} key={item.id}>
+                        <Link href={`/shop/${item.id}`} key={item.id} passHref>
                             <div className='relative cursor-pointer'>
-                                <img src={item.square_img} className='w-full' />
+                                <img
+                                    src={item.square_img}
+                                    alt={item.title}
+                                    className='w-full'
+                                />
                                 <div className='absolute inset-0 flex-center flex-col text-lg bg-white-0.9 opacity-0 hover:opacity-100 duration-300 text-center'>
                                     <h3 className='font-serif'>{item.title}</h3>
                                     <p className='font-semibold text-emerald-500 text-sm'>

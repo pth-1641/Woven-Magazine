@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';
@@ -10,10 +10,7 @@ function Cart({ setDisplayCart }) {
     const increaseBook = useStore((state) => state.increaseBook);
     const decreaseBook = useStore((state) => state.decreaseBook);
     const setLocalBooks = useStore((state) => state.setLocalBooks);
-    const calculatingAmount = useCallback(
-        useStore((state) => state.calculatingAmount),
-        []
-    );
+    const calculatingAmount = useStore((state) => state.calculatingAmount);
 
     useEffect(() => {
         if (localStorage.books) {
@@ -21,7 +18,7 @@ function Cart({ setDisplayCart }) {
             calculatingAmount();
         }
         return;
-    }, []);
+    }, [calculatingAmount, setLocalBooks]);
 
     return (
         <div className='fixed inset-x-0 top-11 bg-white border border-gray-300 md:top-10 md:w-96 md:absolute md:inset-auto md:right-0'>

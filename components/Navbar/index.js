@@ -46,7 +46,7 @@ function Navbar() {
                                     <VscThreeBars />
                                 )}
                             </span>
-                            <Link href='/shop'>
+                            <Link href='/shop' passHref>
                                 <div className='flex-center cursor-pointer h-full relative group pointer-events-none md:pointer-events-auto'>
                                     <a className='mr-2 invisible md:visible select-none'>
                                         SHOP
@@ -63,7 +63,7 @@ function Navbar() {
                                 </div>
                             </Link>
                         </div>
-                        <Link href='/'>
+                        <Link href='/' passHref>
                             <div className='h-full py-[10px] md:py-4 cursor-pointer select-none'>
                                 <img
                                     src='/logo.svg'

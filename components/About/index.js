@@ -49,7 +49,7 @@ function About() {
                                         <img
                                             src='https://i.ibb.co/w4vxBKj/jeremy-team-web2.jpg'
                                             alt='founder'
-                                            className='apsect-[2/5]'
+                                            className='apsect-[2/5] w-full'
                                         />
                                     </div>
                                     <figcaption className='text-center font-semibold mt-2'>
@@ -119,7 +119,7 @@ function About() {
                                 Have a story, tattoo, or dwelling, you’d like to
                                 share with us, then request an interview.
                             </p>
-                            <Link href='/interview'>
+                            <Link href='/interview' passHref>
                                 <button
                                     type='button'
                                     className='btn text-center text-xs w-48 px-5 min-w-max'

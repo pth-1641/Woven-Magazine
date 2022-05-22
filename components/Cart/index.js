@@ -29,7 +29,7 @@ function Cart() {
         }
         fetchCountry();
         calculatingAmount();
-    }, []);
+    }, [calculatingAmount]);
 
     const getStates = (e) => {
         const iso2 = e.target.value;

@@ -42,9 +42,3 @@ export const getDataByCategory = (dbName, category) => {
     const q = query(ref, where('category', '==', category));
     return getDocs(q);
 };
-
-export const getDataBySearch = (dbName, keyword) => {
-    const ref = collection(db, dbName);
-    const q = query(ref, where('author', '>=', keyword));
-    return getDocs(q);
-};

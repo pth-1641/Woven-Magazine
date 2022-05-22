@@ -128,9 +128,9 @@ function Term() {
                     </strong>
                     Our CMS (content management system) is provided by
                     WordPress. Read{' '}
-                    <span className='text-highlight'>WORDPRESS'S</span> privacy
-                    policy. We also use the following services to help present
-                    the content on Woven:
+                    <span className='text-highlight'>WORDPRESS{"'"}S</span>{' '}
+                    privacy policy. We also use the following services to help
+                    present the content on Woven:
                     <br />
                     <br />+ Instagram <br />+ Twitter <br />+ Vimeo
                     <br />

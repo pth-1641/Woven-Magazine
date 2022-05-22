@@ -51,13 +51,25 @@ function NavList() {
                 </a>
             </Link>
             <div className='flex-center flex-wrap italic font-serif gap-x-14 mt-6'>
-                <a href='https://github.com/pth-1641' target='_blank'>
+                <a
+                    href='https://github.com/pth-1641'
+                    target='_blank'
+                    rel='noreferrer'
+                >
                     github
                 </a>
-                <a href='https://www.facebook.com/pth.1641' target='_blank'>
+                <a
+                    href='https://www.facebook.com/pth.1641'
+                    target='_blank'
+                    rel='noreferrer'
+                >
                     facebook
                 </a>
-                <a href='https://www.instagram.com/pth_1641' target='_blank'>
+                <a
+                    href='https://www.instagram.com/pth_1641'
+                    target='_blank'
+                    rel='noreferrer'
+                >
                     instagram
                 </a>
             </div>

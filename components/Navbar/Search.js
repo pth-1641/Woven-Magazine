@@ -1,5 +1,5 @@
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
 function Search({ setDisplaySearch }) {
@@ -9,13 +9,16 @@ function Search({ setDisplaySearch }) {
     useEffect(() => {
         window.addEventListener('keydown', handleEscape);
         return () => window.removeEventListener('keydown', handleEscape);
-    }, []);
+    }, [handleEscape]);
 
-    const handleEscape = (e) => {
-        if (e.keyCode === 27) {
-            setDisplaySearch(false);
-        }
-    };
+    const handleEscape = useCallback(
+        (e) => {
+            if (e.keyCode === 27) {
+                setDisplaySearch(false);
+            }
+        },
+        [setDisplaySearch]
+    );
 
     const handleSearch = (e) => {
         e.preventDefault();

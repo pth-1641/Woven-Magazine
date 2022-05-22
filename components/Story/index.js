@@ -43,7 +43,7 @@ function Story({ category }) {
             }
         }
         if (!category) fetchData();
-    }, []);
+    }, [category]);
 
     useEffect(() => {
         async function fetchDataByCategory() {

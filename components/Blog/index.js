@@ -81,7 +81,7 @@ function Blog({ blogs }) {
                                 Have a story, tattoo, or dwelling, you’d like to
                                 share with us, then request an interview.
                             </p>
-                            <Link href='/interview'>
+                            <Link href='/interview' passHref>
                                 <button
                                     type='button'
                                     className='btn text-center text-xs w-48 px-5 min-w-max'

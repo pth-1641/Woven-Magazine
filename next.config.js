@@ -1,7 +1,7 @@
 module.exports = {
     reactStrictMode: true,
     images: {
-        domains: [],
+        domains: ['i.ibb.co'],
     },
     eslint: {
         ignoreDuringBuilds: true,

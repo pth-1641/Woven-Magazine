@@ -1,17 +1,10 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useRouter } from 'next/router';
-import useStore from '../../appStore/store';
 
 function BlogPost({ blog }) {
     const router = useRouter();
-    const blogInfo = useStore((state) => state.setBlogInfo);
 
     const handleBlogDetail = () => {
-        blogInfo(blog.title, blog.time);
-        localStorage.setItem(
-            'blogInfo',
-            JSON.stringify({ title: blog.title, time: blog.time })
-        );
         router.push(`/blogs/${blog.id}`);
     };
 
